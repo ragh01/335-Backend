@@ -6,13 +6,17 @@ const productSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    QR_Code:{
+        type:String,
+        required:true
+    },
     mrp: {
         type: Number,
         required: true
     },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        required:true,
         ref: 'User'
     },
     size: {

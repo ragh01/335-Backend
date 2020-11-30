@@ -7,7 +7,6 @@ const Product = require('./product')
 const serviceID = "VA07cdab6c5ea0975d0674fcfabfc27ed0"
 const accountSID = "AC3910fc0e90e373d96185d7024f4e424c"
 const authToken = "4f35332b9142bab9cdf86a7e04a7bb9e"
-const JWT_SECRET='thisisasecretformyapp'
 
 const client = require('twilio')(accountSID,authToken)
 
@@ -63,7 +62,7 @@ userSchema.methods.toJSON = function () {
 
 userSchema.methods.generateAuthToken = async function () {
     const user = this
-    const token = jwt.sign({ _id: user._id.toString() }, JWT_SECRET)
+    const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET)
 
     user.tokens = user.tokens.concat({ token })
     await user.save()
